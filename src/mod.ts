@@ -49,7 +49,7 @@ class Mod implements IPostDBLoadMod
         // log it if debug is enabled
         if (this.modConfig.modDebug == true)
         {
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea Market status set to:",this.modConfig.configOptions.fleaEnabled)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea Market availability status set to:",this.modConfig.configOptions.fleaEnabled)
             console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea Market Min Level set to:",this.modConfig.configOptions.fleaMinimumLevel)
             console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea Market only accepts FIR items set to:",this.modConfig.configOptions.fleaSellingFIROnly)
         }
@@ -59,4 +59,3 @@ class Mod implements IPostDBLoadMod
 }
 
 export const mod = new Mod();
-
