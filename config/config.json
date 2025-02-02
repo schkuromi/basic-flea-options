@@ -1,0 +1,10 @@
+{
+    "modEnabled":true,
+    "modDebug":false,
+    
+    "configOptions":{
+        "fleaEnabled":true,
+        "fleaMinimumLevel":15,
+        "fleaSellingFIROnly":false
+    }
+}
