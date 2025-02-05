@@ -8,7 +8,6 @@
         "fleaSellingFIROnly": false,
         
         "fleaItemsBoughtIsFIR": false,
-        "fleaDefaultPresetsOnly": true,
         "fleaItemCountMin": 7,
         "fleaItemCountMax": 30,
 
