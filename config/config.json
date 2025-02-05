@@ -1,10 +1,24 @@
 {
-    "modEnabled":true,
-    "modDebug":false,
+    "modEnabled": true,
+    "modDebug": false,
     
     "configOptions":{
-        "fleaEnabled":true,
-        "fleaMinimumLevel":15,
-        "fleaSellingFIROnly":false
+        "fleaEnabled": true,
+        "fleaMinimumLevel": 15,
+        "fleaSellingFIROnly": false,
+        
+        "fleaItemsBoughtIsFIR": false,
+        "fleaDefaultPresetsOnly": true,
+        "fleaItemCountMin": 7,
+        "fleaItemCountMax": 30,
+
+        "fleaBarterPercent": 20,
+        "fleaBarterCountMin": 1,
+        "fleaBarterCountMax": 3,
+        "fleaMinRoubleCostToBecomeBarter": 20000,
+
+        "fleaPackPercent": 6,
+        "fleaPackCountMin": 4,
+        "fleaPackCountMax": 17
     }
 }
