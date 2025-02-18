@@ -23,11 +23,11 @@ class Mod implements IPostDBLoadMod
             // log that mod is loaded, but is not enabled in the config
             if (this.modConfig.modDebug == true)
             {
-                logger.logWithColor("[DEBUG] [SCHKRM] (PostDB) Basic Flea Changer loaded, but mod is disabled in the config.", LogTextColor.BLUE, LogBackgroundColor.YELLOW)
+                logger.logWithColor("[DEBUG] [SCHKRM] (PostDB) Basic Flea Options loaded, but mod is disabled in the config.", LogTextColor.BLUE, LogBackgroundColor.YELLOW)
             }
             else
             {
-                logger.logWithColor("[SCHKRM] Basic Flea Changer loaded, but mod is disabled in the config.", LogTextColor.BLACK, LogBackgroundColor.YELLOW)
+                logger.logWithColor("[SCHKRM] Basic Flea Options loaded, but mod is disabled in the config.", LogTextColor.BLACK, LogBackgroundColor.YELLOW)
             }
             return;
         }
@@ -51,7 +51,7 @@ class Mod implements IPostDBLoadMod
         fleaConfig.dynamic.pack.chancePercent = this.modConfig.configOptions.fleaPackPercent;
         fleaConfig.dynamic.pack.itemCountMin = this.modConfig.configOptions.fleaPackCountMin;
         fleaConfig.dynamic.pack.itemCountMax = this.modConfig.configOptions.fleaPackCountMax;
-
+        
         // get database from the server
         const databaseServer = container.resolve<DatabaseServer>("DatabaseServer");
 
@@ -69,28 +69,42 @@ class Mod implements IPostDBLoadMod
         // option for forcing only FIR items to be sold on flea, rather than all items
         tables.globals.config.RagFair.isOnlyFoundInRaidAllowed = this.modConfig.configOptions.fleaSellingFIROnly;
 
+        // option for removing item selling limits
+        if (this.modConfig.configOptions.fleaDisableItemRestrictions)
+        {
+            tables.globals.config.RagFair.ItemRestrictions = [];
+        }
+
         // log it if debug is enabled
         if (this.modConfig.modDebug == true)
         {
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Items bought from Flea is FIR:", fleaConfig.dynamic.purchasesAreFoundInRaid)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market minimum offers per item:", fleaConfig.dynamic.offerItemCount.min)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market maximum offers per item:", fleaConfig.dynamic.offerItemCount.max)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Items bought from Flea is FIR:", fleaConfig.dynamic.purchasesAreFoundInRaid)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market minimum offers per item:", fleaConfig.dynamic.offerItemCount.min)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market maximum offers per item:", fleaConfig.dynamic.offerItemCount.max)
+            if (this.modConfig.configOptions.fleaDisableItemRestrictions)
+            {
+                console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market sell limit restrictions set to disabled in mod config.")
+            }
+            else
+            {
+                console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market sell limit restrictions unchanged.")
+            }
 
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market barter offers percent chance:", fleaConfig.dynamic.barter.chancePercent)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market barter minimum offers per item:", fleaConfig.dynamic.barter.itemCountMin)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market barter maximum offers per item:", fleaConfig.dynamic.barter.itemCountMax)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market barter minimum rouble cost to become a barter:", fleaConfig.dynamic.barter.minRoubleCostToBecomeBarter)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter offers percent chance:", fleaConfig.dynamic.barter.chancePercent)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter minimum offers per item:", fleaConfig.dynamic.barter.itemCountMin)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter maximum offers per item:", fleaConfig.dynamic.barter.itemCountMax)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter minimum rouble cost to become a barter:", fleaConfig.dynamic.barter.minRoubleCostToBecomeBarter)
 
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market item packs offers percent chance:", fleaConfig.dynamic.pack.chancePercent)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market item packs offers minimum offers per item:", fleaConfig.dynamic.pack.itemCountMin)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market item packs offers maximum offers per item:", fleaConfig.dynamic.pack.itemCountMax)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers percent chance:", fleaConfig.dynamic.pack.chancePercent)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers minimum offers per item:", fleaConfig.dynamic.pack.itemCountMin)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers maximum offers per item:", fleaConfig.dynamic.pack.itemCountMax)
 
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market button works:", this.modConfig.configOptions.fleaEnabled)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market minimum user level set to:", this.modConfig.configOptions.fleaMinimumLevel)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Changer - Flea market only accepts FIR items set to:", this.modConfig.configOptions.fleaSellingFIROnly)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market button works:", this.modConfig.configOptions.fleaEnabled)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market minimum user level set to:", this.modConfig.configOptions.fleaMinimumLevel)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market only accepts FIR items set to:", this.modConfig.configOptions.fleaSellingFIROnly)
         }
 
-        logger.logWithColor("[SCHKRM] Basic Flea Changer loaded.", LogTextColor.BLACK, LogBackgroundColor.YELLOW);
+        logger.logWithColor("[SCHKRM] Basic Flea Options loaded.", LogTextColor.BLACK, LogBackgroundColor.YELLOW);
     }
 }
 

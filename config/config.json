@@ -6,6 +6,7 @@
         "fleaEnabled": true,
         "fleaMinimumLevel": 15,
         "fleaSellingFIROnly": false,
+        "fleaDisableItemRestrictions":"false",
         
         "fleaItemsBoughtIsFIR": false,
         "fleaItemCountMin": 7,
