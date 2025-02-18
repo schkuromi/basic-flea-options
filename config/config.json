@@ -6,8 +6,11 @@
         "fleaEnabled": true,
         "fleaMinimumLevel": 15,
         "fleaSellingFIROnly": false,
-        "fleaDisableItemRestrictions":"false",
+        "fleaDisableItemRestrictions": false,
         
+        "fleaEnableBsgBlacklist": true,
+        "fleaEnableQuestItemsBlacklist": true,
+        "fleaAlwaysShowSeasonalItems": false,
         "fleaItemsBoughtIsFIR": false,
         "fleaItemCountMin": 7,
         "fleaItemCountMax": 30,

@@ -42,6 +42,9 @@ class Mod implements IPostDBLoadMod
         fleaConfig.dynamic.purchasesAreFoundInRaid = this.modConfig.configOptions.fleaItemsBoughtIsFIR;
         fleaConfig.dynamic.offerItemCount.min = this.modConfig.configOptions.fleaItemCountMin;
         fleaConfig.dynamic.offerItemCount.max = this.modConfig.configOptions.fleaItemCountMax;
+        fleaConfig.dynamic.removeSeasonalItemsWhenNotInEvent = !this.modConfig.configOptions.fleaAlwaysShowSeasonalItems;
+        fleaConfig.dynamic.blacklist.enableBsgList = this.modConfig.configOptions.fleaEnableBsgBlacklist;
+        fleaConfig.dynamic.blacklist.enableQuestList = this.modConfig.configOptions.fleaEnableQuestItemsBlacklist;
 
         fleaConfig.dynamic.barter.chancePercent = this.modConfig.configOptions.fleaBarterPercent;
         fleaConfig.dynamic.barter.itemCountMin = this.modConfig.configOptions.fleaBarterCountMin;
@@ -95,6 +98,9 @@ class Mod implements IPostDBLoadMod
             console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter maximum offers per item:", fleaConfig.dynamic.barter.itemCountMax)
             console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter minimum rouble cost to become a barter:", fleaConfig.dynamic.barter.minRoubleCostToBecomeBarter)
 
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market hides seasonal items when that event is not running:", fleaConfig.dynamic.removeSeasonalItemsWhenNotInEvent)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market hides BSG blacklisted items:", fleaConfig.dynamic.blacklist.enableBsgList)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market hides Quest items:", fleaConfig.dynamic.blacklist.enableQuestList)
             console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers percent chance:", fleaConfig.dynamic.pack.chancePercent)
             console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers minimum offers per item:", fleaConfig.dynamic.pack.itemCountMin)
             console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers maximum offers per item:", fleaConfig.dynamic.pack.itemCountMax)
