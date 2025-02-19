@@ -11,6 +11,7 @@
         "fleaEnableBsgBlacklist": true,
         "fleaEnableQuestItemsBlacklist": true,
         "fleaAlwaysShowSeasonalItems": false,
+        "fleaHighestArmorTier": 4,
         "fleaItemsBoughtIsFIR": false,
         "fleaItemCountMin": 7,
         "fleaItemCountMax": 30,

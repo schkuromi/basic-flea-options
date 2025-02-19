@@ -39,12 +39,13 @@ class Mod implements IPostDBLoadMod
         const fleaConfig: IRagfairConfig = configServer.getConfig<IRagfairConfig>(ConfigTypes.RAGFAIR);
 
         // all the flea configs
+        fleaConfig.dynamic.blacklist.enableBsgList = this.modConfig.configOptions.fleaEnableBsgBlacklist;
+        fleaConfig.dynamic.blacklist.enableQuestList = this.modConfig.configOptions.fleaEnableQuestItemsBlacklist;
+        fleaConfig.dynamic.removeSeasonalItemsWhenNotInEvent = !this.modConfig.configOptions.fleaAlwaysShowSeasonalItems;
+        fleaConfig.dynamic.blacklist.armorPlate.maxProtectionLevel = this.modConfig.configOptions.fleaHighestArmorTier;
         fleaConfig.dynamic.purchasesAreFoundInRaid = this.modConfig.configOptions.fleaItemsBoughtIsFIR;
         fleaConfig.dynamic.offerItemCount.min = this.modConfig.configOptions.fleaItemCountMin;
         fleaConfig.dynamic.offerItemCount.max = this.modConfig.configOptions.fleaItemCountMax;
-        fleaConfig.dynamic.removeSeasonalItemsWhenNotInEvent = !this.modConfig.configOptions.fleaAlwaysShowSeasonalItems;
-        fleaConfig.dynamic.blacklist.enableBsgList = this.modConfig.configOptions.fleaEnableBsgBlacklist;
-        fleaConfig.dynamic.blacklist.enableQuestList = this.modConfig.configOptions.fleaEnableQuestItemsBlacklist;
 
         fleaConfig.dynamic.barter.chancePercent = this.modConfig.configOptions.fleaBarterPercent;
         fleaConfig.dynamic.barter.itemCountMin = this.modConfig.configOptions.fleaBarterCountMin;
@@ -81,9 +82,9 @@ class Mod implements IPostDBLoadMod
         // log it if debug is enabled
         if (this.modConfig.modDebug == true)
         {
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Items bought from Flea is FIR:", fleaConfig.dynamic.purchasesAreFoundInRaid)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market minimum offers per item:", fleaConfig.dynamic.offerItemCount.min)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market maximum offers per item:", fleaConfig.dynamic.offerItemCount.max)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market button works:", this.modConfig.configOptions.fleaEnabled)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market minimum user level set to:", this.modConfig.configOptions.fleaMinimumLevel)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market only accepts FIR items set to:", this.modConfig.configOptions.fleaSellingFIROnly)
             if (this.modConfig.configOptions.fleaDisableItemRestrictions)
             {
                 console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market sell limit restrictions set to disabled in mod config.")
@@ -93,21 +94,22 @@ class Mod implements IPostDBLoadMod
                 console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market sell limit restrictions unchanged.")
             }
 
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter offers percent chance:", fleaConfig.dynamic.barter.chancePercent)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter minimum offers per item:", fleaConfig.dynamic.barter.itemCountMin)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter maximum offers per item:", fleaConfig.dynamic.barter.itemCountMax)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market barter minimum rouble cost to become a barter:", fleaConfig.dynamic.barter.minRoubleCostToBecomeBarter)
-
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market hides seasonal items when that event is not running:", fleaConfig.dynamic.removeSeasonalItemsWhenNotInEvent)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Should seasonal items be removed when season is not active:", fleaConfig.dynamic.removeSeasonalItemsWhenNotInEvent)
             console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market hides BSG blacklisted items:", fleaConfig.dynamic.blacklist.enableBsgList)
             console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market hides Quest items:", fleaConfig.dynamic.blacklist.enableQuestList)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers percent chance:", fleaConfig.dynamic.pack.chancePercent)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers minimum offers per item:", fleaConfig.dynamic.pack.itemCountMin)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market item packs offers maximum offers per item:", fleaConfig.dynamic.pack.itemCountMax)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Highest tier of armor allowed:", fleaConfig.dynamic.blacklist.armorPlate.maxProtectionLevel)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Items bought from Flea is FIR:", fleaConfig.dynamic.purchasesAreFoundInRaid)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Minimum number of offers to be listed per item:", fleaConfig.dynamic.offerItemCount.min)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Maximum number of offers to be listed per item:", fleaConfig.dynamic.offerItemCount.max)
 
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market button works:", this.modConfig.configOptions.fleaEnabled)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market minimum user level set to:", this.modConfig.configOptions.fleaMinimumLevel)
-            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Flea market only accepts FIR items set to:", this.modConfig.configOptions.fleaSellingFIROnly)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Percentage chance an offer is listed as a barter:", fleaConfig.dynamic.barter.chancePercent)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Min number of required items for a barter requirement:", fleaConfig.dynamic.barter.itemCountMin)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Max number of required items for a barter requirement:", fleaConfig.dynamic.barter.itemCountMax)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Minimum rouble cost for an offer to be considerd for turning into a barter:", fleaConfig.dynamic.barter.minRoubleCostToBecomeBarter)
+
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Percentage chacne an offer is listed as a pack:", fleaConfig.dynamic.pack.chancePercent)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Min number of required items for a pack:", fleaConfig.dynamic.pack.itemCountMin)
+            console.log("[DEBUG] [SCHKRM] Basic Flea Options - Max number of required items for a pack:", fleaConfig.dynamic.pack.itemCountMax)
         }
 
         logger.logWithColor("[SCHKRM] Basic Flea Options loaded.", LogTextColor.BLACK, LogBackgroundColor.YELLOW);
