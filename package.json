@@ -1,7 +1,7 @@
 {
     "name": "basic-flea-options",
-    "version": "1.0.2",
-    "sptVersion": "~3.10",
+    "version": "1.0.3",
+    "sptVersion": "~3.11",
     "loadBefore": [],
     "loadAfter": [],
     "incompatibilities": [],
