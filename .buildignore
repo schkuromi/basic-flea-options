@@ -18,4 +18,5 @@
 /package-lock.json
 /tsconfig.json
 /types
-icon.png
+/icon.png
+/build_gh.mjs
