@@ -28,6 +28,7 @@ jobs:
         run: zip -r build.zip ./dist
 
       - name: Create Draft Release
+        permissions: write-all
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -36,7 +37,6 @@ jobs:
           tag_name: ${{ github.sha }}
           release_name: Build ${{ github.sha }}
           draft: true
-          files: build.zip
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
