@@ -28,7 +28,6 @@ jobs:
         run: zip -r build.zip ./dist
 
       - name: Create Draft Release
-        permissions: write-all
         id: create_release
         uses: actions/create-release@v1
         env:
